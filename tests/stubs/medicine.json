@@ -1,0 +1,466 @@
+{
+  "test_refbooks_list": [
+    {
+      "name": "one_obj",
+      "references": [
+        {
+          "id": 1,
+          "name": "name1",
+          "code": "code1"
+        }
+      ],
+      "only_id": false,
+      "only_name": false,
+      "date": null,
+      "versions": [],
+      "currect_result": [
+        {
+          "id": 1,
+          "name": "name1",
+          "code": "code1"
+        }
+      ]
+    },{
+      "name": "multi_objs",
+      "references": [
+        {
+          "id": 1,
+          "name": "name1",
+          "code": "code1"
+        }, {
+          "id": 2,
+          "name": "name2",
+          "code": "code2"
+        }, {
+          "id": 3,
+          "name": "name3",
+          "code": "code3"
+        }
+      ],
+      "only_id": false,
+      "only_name": false,
+      "date": null,
+      "versions": [],
+      "currect_result": [
+        {
+          "id": 1,
+          "name": "name1",
+          "code": "code1"
+        }, {
+          "id": 2,
+          "name": "name2",
+          "code": "code2"
+        }, {
+          "id": 3,
+          "name": "name3",
+          "code": "code3"
+        }
+      ]
+    },{
+      "name": "one_obj_without_version",
+      "references": [
+        {
+          "id": 1,
+          "name": "name1",
+          "code": "code1"
+        }
+      ],
+      "only_id": false,
+      "only_name": false,
+      "date": "2022-01-01",
+      "versions": [],
+      "currect_result": []
+    },{
+      "name": "multi_objs_with_versions",
+      "references": [
+        {
+          "id": 1,
+          "name": "name1",
+          "code": "code1"
+        }, {
+          "id": 2,
+          "name": "name2",
+          "code": "code2"
+        }, {
+          "id": 3,
+          "name": "name3",
+          "code": "code3"
+        }, {
+          "id": 4,
+          "name": "name4",
+          "code": "code4"
+        }
+      ],
+      "only_id": false,
+      "only_name": false,
+      "date": "2022-01-01",
+      "versions": [
+        {
+          "ref": 1,
+          "date": "2022-01-01",
+          "v": 1
+        }, {
+          "ref": 2,
+          "date": "2021-01-01",
+          "v": 1
+        }, {
+          "ref": 3,
+          "date": "2023-01-01",
+          "v": 1
+        }, {
+          "ref": 4,
+          "date": "2024-01-01",
+          "v": 1
+        }, {
+          "ref": 4,
+          "date": "2022-01-01",
+          "v": 2
+        }
+      ],
+      "currect_result": [
+        {
+          "id": 1,
+          "name": "name1",
+          "code": "code1"
+        }, {
+          "id": 2,
+          "name": "name2",
+          "code": "code2"
+        }
+      ]
+    },{
+      "name": "multi_ids_with_versions",
+      "references": [
+        {
+          "id": 1,
+          "name": "name1",
+          "code": "code1"
+        }, {
+          "id": 2,
+          "name": "name2",
+          "code": "code2"
+        }, {
+          "id": 3,
+          "name": "name3",
+          "code": "code3"
+        }, {
+          "id": 4,
+          "name": "name4",
+          "code": "code4"
+        }
+      ],
+      "only_id": true,
+      "only_name": false,
+      "date": "2022-01-01",
+      "versions": [
+        {
+          "ref": 1,
+          "date": "2022-01-01",
+          "v": 1
+        }, {
+          "ref": 2,
+          "date": "2021-01-01",
+          "v": 1
+        }, {
+          "ref": 3,
+          "date": "2023-01-01",
+          "v": 1
+        }, {
+          "ref": 4,
+          "date": "2024-01-01",
+          "v": 1
+        }, {
+          "ref": 4,
+          "date": "2022-01-01",
+          "v": 2
+        }
+      ],
+      "currect_result": [
+        {
+          "id": 1
+        }, {
+          "id": 2
+        }
+      ]
+    },{
+      "name": "multi_names_with_versions",
+      "references": [
+        {
+          "id": 1,
+          "name": "name1",
+          "code": "code1"
+        }, {
+          "id": 2,
+          "name": "name2",
+          "code": "code2"
+        }, {
+          "id": 3,
+          "name": "name3",
+          "code": "code3"
+        }, {
+          "id": 4,
+          "name": "name4",
+          "code": "code4"
+        }
+      ],
+      "only_id": false,
+      "only_name": true,
+      "date": "2022-01-01",
+      "versions": [
+        {
+          "ref": 1,
+          "date": "2022-01-01",
+          "v": 1
+        }, {
+          "ref": 2,
+          "date": "2021-01-01",
+          "v": 1
+        }, {
+          "ref": 3,
+          "date": "2023-01-01",
+          "v": 1
+        }, {
+          "ref": 4,
+          "date": "2024-01-01",
+          "v": 1
+        }, {
+          "ref": 4,
+          "date": "2022-01-01",
+          "v": 2
+        }
+      ],
+      "currect_result": [
+        {
+          "name": "name1"
+        }, {
+          "name": "name2"
+        }
+      ]
+    }
+  ],
+    "test_elements_list": [
+      {
+        "name": "empty_list",
+        "elements": [],
+        "only_code": false,
+        "only_value": false,
+        "version": null,
+        "versions": [],
+        "currect_result": []
+      }, {
+        "name": "element_other_reference",
+        "elements": [
+          {
+            "v_id": 2,
+            "code": "code2",
+            "value": "value2"
+          }
+        ],
+        "only_code": false,
+        "only_value": false,
+        "version": null,
+        "versions": [
+          {
+            "id": 2,
+            "ref": 2,
+            "date": "2021-01-01",
+            "v": 1
+          }
+        ],
+        "currect_result": []
+      }, {
+        "name": "currect_element",
+        "elements": [
+          {
+            "v_id": 1,
+            "code": "code1",
+            "value": "value1"
+          },{
+            "v_id": 2,
+            "code": "code2",
+            "value": "value2"
+          }
+        ],
+        "only_code": false,
+        "only_value": false,
+        "version": null,
+        "versions": [
+          {
+            "id": 1,
+            "ref": 1,
+            "date": "2022-01-01",
+            "v": 1
+          }, {
+            "id": 2,
+            "ref": 2,
+            "date": "2021-01-01",
+            "v": 1
+          }
+        ],
+        "currect_result": [
+          {
+            "code": "code1",
+            "value": "value1"
+          }
+        ]
+      }, {
+        "name": "elemets_codes",
+        "elements": [
+          {
+            "v_id": 1,
+            "code": "code1",
+            "value": "value1"
+          },{
+            "v_id": 2,
+            "code": "code2",
+            "value": "value2"
+          },{
+            "v_id": 1,
+            "code": "code3",
+            "value": "value3"
+          }
+        ],
+        "only_code": true,
+        "only_value": false,
+        "version": null,
+        "versions": [
+          {
+            "id": 1,
+            "ref": 1,
+            "date": "2022-01-01",
+            "v": 1
+          }, {
+            "id": 2,
+            "ref": 1,
+            "date": "2021-01-01",
+            "v": 0.1
+          }
+        ],
+        "currect_result": [
+          {
+            "code": "code1"
+          },{
+            "code": "code2"
+          },{
+            "code": "code3"
+          }
+        ]
+      }, {
+        "name": "elemets_values",
+        "elements": [
+          {
+            "v_id": 1,
+            "code": "code1",
+            "value": "value1"
+          },{
+            "v_id": 2,
+            "code": "code2",
+            "value": "value2"
+          },{
+            "v_id": 1,
+            "code": "code3",
+            "value": "value3"
+          }
+        ],
+        "only_code": false,
+        "only_value": true,
+        "version": null,
+        "versions": [
+          {
+            "id": 1,
+            "ref": 1,
+            "date": "2022-01-01",
+            "v": 1
+          }, {
+            "id": 2,
+            "ref": 1,
+            "date": "2021-01-01",
+            "v": 0.1
+          }
+        ],
+        "currect_result": [
+          {
+            "value": "value1"
+          },{
+            "value": "value2"
+          },{
+            "value": "value3"
+          }
+        ]
+      }, {
+        "name": "elemets_values_with_non_version",
+        "elements": [
+          {
+            "v_id": 1,
+            "code": "code1",
+            "value": "value1"
+          },{
+            "v_id": 2,
+            "code": "code2",
+            "value": "value2"
+          },{
+            "v_id": 1,
+            "code": "code3",
+            "value": "value3"
+          }
+        ],
+        "only_code": false,
+        "only_value": true,
+        "version": 3,
+        "versions": [
+          {
+            "id": 1,
+            "ref": 1,
+            "date": "2022-01-01",
+            "v": 1
+          }, {
+            "id": 2,
+            "ref": 1,
+            "date": "2021-01-01",
+            "v": 0.1
+          }
+        ],
+        "currect_result": []
+      }, {
+        "name": "elemets_values_with_version",
+        "elements": [
+          {
+            "v_id": 1,
+            "code": "code1",
+            "value": "value1"
+          },{
+            "v_id": 2,
+            "code": "code2",
+            "value": "value2"
+          },{
+            "v_id": 1,
+            "code": "code3",
+            "value": "value3"
+          }
+        ],
+        "only_code": false,
+        "only_value": true,
+        "version": 1,
+        "versions": [
+          {
+            "id": 1,
+            "ref": 1,
+            "date": "2022-01-01",
+            "v": 1
+          }, {
+            "id": 2,
+            "ref": 1,
+            "date": "2021-01-01",
+            "v": 0.1
+          }
+        ],
+        "currect_result": [
+          {
+            "value": "value1"
+          },{
+            "value": "value3"
+          }
+        ]
+      }
+    ]
+}
