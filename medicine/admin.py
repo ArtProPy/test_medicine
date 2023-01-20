@@ -25,11 +25,11 @@ class ReferenceAdmin(admin.ModelAdmin):
 
     @admin.display(description='Текущая версия')
     def version(self, obj):
-        return obj.versions_reference.last().version
+        return obj.versions_reference.last().version if obj.versions_reference.all() else 'Справочник не имеет версий'
 
     @admin.display(description='Дата начала действия версии')
     def version_data(self, obj):
-        return obj.versions_reference.last().date
+        return obj.versions_reference.last().date if obj.versions_reference.all() else 'Справочник не имеет версий'
 
 
 @admin.register(VersionReference)
