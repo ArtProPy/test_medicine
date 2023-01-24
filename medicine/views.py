@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from django.db.models import Max
+from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
 from rest_framework.mixins import ListModelMixin
@@ -46,19 +47,39 @@ class ReferenceViewSet(BaseApi):
     def get_queryset(self):
         queryset = super().get_queryset()
         if self.request.query_params.get('date'):
-            queryset = queryset.annotate(
-                date=Max('versions_reference__date')
-            ).filter(
-                date__lte=self.request.query_params.get('date')
+            queryset = queryset.filter(
+                versions_reference__date__lte=self.request.query_params.get('date')
             )
         return queryset
 
     @swagger_auto_schema(
         operation_summary='Получить список справочников',
         operation_description='Получает список справочников',
-        tags=['Справочник']
+        tags=['Справочник'],
+        manual_parameters=[openapi.Parameter('date', in_=openapi.IN_QUERY,
+                           type=openapi.TYPE_STRING, format='YYYY-mm-dd')]
     )
-    def list(self, request, *args, **kwargs):
+    def refbooks(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
+
+    @swagger_auto_schema(
+        operation_summary='Получить список id справочников',
+        operation_description='Получает список идентификаторов справочников справочников',
+        tags=['Справочник'],
+        manual_parameters=[openapi.Parameter('date', in_=openapi.IN_QUERY,
+                           type=openapi.TYPE_STRING, format='YYYY-mm-dd')]
+    )
+    def refbooks_id(self, request, *args, **kwargs):
+        return self.refbooks(request, *args, **kwargs)
+
+    @swagger_auto_schema(
+        operation_summary='Получить список названий справочников',
+        operation_description='Получает список названий справочников',
+        tags=['Справочник'],
+        manual_parameters=[openapi.Parameter('date', in_=openapi.IN_QUERY,
+                           type=openapi.TYPE_STRING, format='YYYY-mm-dd')]
+    )
+    def refbooks_name(self, request, *args, **kwargs):
         return super().list(request, *args, **kwargs)
 
 
@@ -72,16 +93,44 @@ class ElementReferenceViewSet(BaseApi):
         if self.request.query_params.get('version'):
             queryset = queryset.filter(version_reference__version=self.request.query_params['version'])
         else:
-            queryset = queryset.filter(version_reference__date__lte=datetime.now())
+            currect_date = queryset.filter(
+                version_reference__date__lte=datetime.now()
+            ).aggregate(
+                date=Max('version_reference__date')
+            )['date']
+            queryset = queryset.filter(version_reference__date=currect_date)
+
         return queryset
 
     @swagger_auto_schema(
         operation_summary='Получить список элементов справочника',
         operation_description='Получает список элементов справочника',
-        tags=['Элементы справочника']
+        tags=['Элементы справочника'],
+        manual_parameters=[openapi.Parameter('version', in_=openapi.IN_QUERY,
+                           type=openapi.TYPE_STRING)]
     )
-    def list(self, request, *args, **kwargs):
+    def refbooks_elements(self, request, *args, **kwargs):
         return super().list(request, *args, **kwargs)
+
+    @swagger_auto_schema(
+        operation_summary='Получить список id элементов справочника',
+        operation_description='Получает список идентификаторов элементов справочника',
+        tags=['Элементы справочника'],
+        manual_parameters=[openapi.Parameter('version', in_=openapi.IN_QUERY,
+                           type=openapi.TYPE_STRING)]
+    )
+    def refbooks_elements_id(self, request, *args, **kwargs):
+        return self.refbooks_elements(request, *args, **kwargs)
+
+    @swagger_auto_schema(
+        operation_summary='Получить список названий элементов справочника',
+        operation_description='Получает список названий элементов справочника',
+        tags=['Элементы справочника'],
+        manual_parameters=[openapi.Parameter('version', in_=openapi.IN_QUERY,
+                           type=openapi.TYPE_STRING)]
+    )
+    def refbooks_elements_name(self, request, *args, **kwargs):
+        return self.refbooks_elements(request, *args, **kwargs)
 
     @swagger_auto_schema(
         operation_summary='Ищет элемент справочника, соответствующий коду и значению',

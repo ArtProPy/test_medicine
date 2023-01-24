@@ -26,7 +26,7 @@ class VersionReference(models.Model):
     date = models.DateField('Дата')
 
     def __str__(self):
-        return self.version
+        return f'{self.reference}-{self.version}'
 
     class Meta:
         app_label = 'medicine'
