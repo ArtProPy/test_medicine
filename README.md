@@ -37,3 +37,24 @@
 ```bash
   .../venv/bin/django-admin runserver
 ```
+
+### Ссылки
+#### Страница Admin:
+```bash
+  http://DOMAIN:PORT/admin/
+```
+#### Страницы Swagger:
+```bash
+  http://DOMAIN:PORT/doc/
+  http://DOMAIN:PORT/redoc/
+```
+#### Страницы микроссервиса:
+```bash
+   http://DOMAIN:PORT/refbooks.id/
+   http://DOMAIN:PORT/refbooks.name/
+   http://DOMAIN:PORT/refbooks/
+   http://DOMAIN:PORT/refbooks/<id>/elements.code/
+   http://DOMAIN:PORT/refbooks/<id>/elements.value/
+   http://DOMAIN:PORT/refbooks/<id>/elements/
+   http://DOMAIN:PORT/refbooks/<id>/check_element 
+```
